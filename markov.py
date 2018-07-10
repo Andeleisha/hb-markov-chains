@@ -65,7 +65,7 @@ def make_chains(text_string):
     		possible_word = []
     	try:
     		possible_word = possible_word.append(words[i+2])
-    		chains[key] =chains.get(key, possible_word)
+    		# chains[key] =chains.get(key, possible_word)
     	except:
     		return chains
 
@@ -82,6 +82,29 @@ def make_text(chains):
     words = []
 
     # your code goes here
+    #Pick a random key
+    #Append key to string
+    #Pick a random word from the list of possible words
+    #Append word to string
+    #Create a new key 
+    #Find the key 
+    #Repeat Pick a random word etc etc
+    #if possible words is empty list, return string
+
+    keys = list(chains.keys())
+    first_key = choice(keys)
+
+    for word in first_key:
+    	words.append(word)
+    	
+    
+
+    rand_word = choice(chains[first_key])
+    words.append(rand_word)
+    
+    
+    
+
 
     return " ".join(words)
 
