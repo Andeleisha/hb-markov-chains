@@ -14,9 +14,9 @@ def open_and_read_file(file_path):
 
     with open(file_path) as filename:
 
-    	string_of_file = filename.read()
+        string_of_file = filename.read()
 
-    	return string_of_file
+        return string_of_file
 
 
 def make_chains(text_string):
@@ -53,23 +53,23 @@ def make_chains(text_string):
     
 
     for i in range(len(words) - 1):
-    	key = tuple([words[i], words[i + 1]])
+        key = tuple([words[i], words[i + 1]])
 
 
-    	possible_word = []
-    	chains[key] =chains.get(key, possible_word)
+        possible_word = []
+        chains[key] =chains.get(key, possible_word)
 
-    	if key in chains:
-    		possible_word = chains[key]
-    	else:
-    		possible_word = []
-    	try:
-    		possible_word = possible_word.append(words[i+2])
-    		# chains[key] =chains.get(key, possible_word)
-    	except:
-    		return chains
+        if key in chains:
+            possible_word = chains[key]
+        else:
+            possible_word = []
+        try:
+            possible_word = possible_word.append(words[i+2])
+            # chains[key] =chains.get(key, possible_word)
+        except:
+            return chains
 
-    	# chains[key] =chains.get(key, possible_word)
+        # chains[key] =chains.get(key, possible_word)
 
     # print(chains)
 
@@ -92,19 +92,26 @@ def make_text(chains):
     #if possible words is empty list, return string
 
     keys = list(chains.keys())
-    first_key = choice(keys)
+    search_key = ()
 
-    for word in first_key:
-    	words.append(word)
-    	
     
 
-    rand_word = choice(chains[first_key])
-    words.append(rand_word)
-    
-    new_key = (first_key[1], rand_word)
-    print(new_key)
+    while True: 
+        if search_key == ():
+            search_key = choice(keys)
+            for word in search_key:
+                words.append(word)
+        
+        #print(search_key)
 
+        rand_word = choice(chains[search_key])
+        words.append(rand_word)
+        
+        search_key = (search_key[1], rand_word)
+
+        if chains[search_key] == []:
+            break
+        #print(search_key)
 
     return " ".join(words)
 
