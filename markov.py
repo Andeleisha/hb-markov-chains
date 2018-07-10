@@ -14,10 +14,9 @@ def open_and_read_file(file_path):
 
     with open(file_path) as filename:
 
-    	
+    	string_of_file = filename.read()
 
-
-    	return filename.read
+    	return string_of_file
 
 
 def make_chains(text_string):
@@ -49,7 +48,32 @@ def make_chains(text_string):
 
     # your code goes here
 
-    return chains
+ 
+    words = text_string.split()
+    
+
+    for i in range(len(words) - 1):
+    	key = tuple([words[i], words[i + 1]])
+
+
+    	possible_word = []
+    	chains[key] =chains.get(key, possible_word)
+
+    	if key in chains:
+    		possible_word = chains[key]
+    	else:
+    		possible_word = []
+    	try:
+    		possible_word = possible_word.append(words[i+2])
+    		chains[key] =chains.get(key, possible_word)
+    	except:
+    		return chains
+
+    	# chains[key] =chains.get(key, possible_word)
+
+    # print(chains)
+
+    # return chains
 
 
 def make_text(chains):
@@ -73,4 +97,4 @@ chains = make_chains(input_text)
 # Produce random text
 random_text = make_text(chains)
 
-print random_text
+print(random_text)
