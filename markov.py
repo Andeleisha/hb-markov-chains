@@ -102,8 +102,8 @@ def make_text(chains):
     rand_word = choice(chains[first_key])
     words.append(rand_word)
     
-    
-    
+    new_key = (first_key[1], rand_word)
+    print(new_key)
 
 
     return " ".join(words)
