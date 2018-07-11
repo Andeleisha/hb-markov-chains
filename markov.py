@@ -81,7 +81,7 @@ def make_chains(text_string):
 
     #     chains[key] =chains.get(key, possible_word)
 
-    print(chains)
+    # print(chains)
 
     return chains
 
