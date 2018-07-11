@@ -2,6 +2,8 @@
 
 from random import choice
 
+import sys
+
 
 def open_and_read_file(file_path):
     """Take file path as string; return text as string.
@@ -50,30 +52,38 @@ def make_chains(text_string):
 
  
     words = text_string.split()
+
+    words.append(None)
     
 
-    for i in range(len(words) - 1):
+    for i in range(len(words) - 2):
         key = tuple([words[i], words[i + 1]])
+        possible_word = words[i + 2]
+
+        if key not in chains:
+            chains[key] = []
+
+        chains[key].append(possible_word)
 
 
-        possible_word = []
-        chains[key] =chains.get(key, possible_word)
+    #     possible_word = []
+    #     chains[key] =chains.get(key, possible_word)
 
-        if key in chains:
-            possible_word = chains[key]
-        else:
-            possible_word = []
-        try:
-            possible_word = possible_word.append(words[i+2])
-            # chains[key] =chains.get(key, possible_word)
-        except:
-            return chains
+    #     if key in chains:
+    #         possible_word = chains[key]
+    #     else:
+    #         possible_word = []
+    #     try:
+    #         possible_word = possible_word.append(words[i+2])
+    #         # chains[key] =chains.get(key, possible_word)
+    #     except:
+    #         return chains
 
-        # chains[key] =chains.get(key, possible_word)
+    #     chains[key] =chains.get(key, possible_word)
 
-    # print(chains)
+    print(chains)
 
-    # return chains
+    return chains
 
 
 def make_text(chains):
@@ -109,14 +119,14 @@ def make_text(chains):
         
         search_key = (search_key[1], rand_word)
 
-        if chains[search_key] == []:
+        if chains[search_key] == [None]:
             break
         #print(search_key)
 
     return " ".join(words)
 
 
-input_path = "green-eggs.txt"
+input_path = sys.argv[-1]
 
 # Open the file and turn it into one long string
 input_text = open_and_read_file(input_path)
@@ -128,3 +138,5 @@ chains = make_chains(input_text)
 random_text = make_text(chains)
 
 print(random_text)
+
+
