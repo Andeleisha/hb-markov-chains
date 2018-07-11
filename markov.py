@@ -49,16 +49,17 @@ def make_chains(text_string):
     chains = {}
 
     # your code goes here
-
+    n = int(input("How many words do you want to use? "))
  
     words = text_string.split()
 
     words.append(None)
     
-
-    for i in range(len(words) - 2):
-        key = tuple([words[i], words[i + 1]])
-        possible_word = words[i + 2]
+    key = tuple([])
+    
+    for i in range(len(words) - n):
+        key = key + tuple(words[i:i+n])
+        possible_word = words[i+n]
 
         if key not in chains:
             chains[key] = []
@@ -81,7 +82,7 @@ def make_chains(text_string):
 
     #     chains[key] =chains.get(key, possible_word)
 
-    # print(chains)
+    print(chains)
 
     return chains
 
@@ -113,11 +114,12 @@ def make_text(chains):
                 words.append(word)
         
         #print(search_key)
+        n = len(search_key)
 
         rand_word = choice(chains[search_key])
         words.append(rand_word)
         
-        search_key = (search_key[1], rand_word)
+        search_key = search_key[1:n]+ tuple([rand_word])
 
         if chains[search_key] == [None]:
             break
