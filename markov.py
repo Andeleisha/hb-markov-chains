@@ -53,8 +53,8 @@ def make_chains(text_string):
  
     words = text_string.split()
 
-    words.append(None)
-    words.append(None)
+    for q in range(n-1):
+        words.append(None)
     
     key = tuple([])
     
@@ -83,7 +83,6 @@ def make_chains(text_string):
 
     #     chains[key] =chains.get(key, possible_word)
 
-    print(chains)
 
     return chains
 
