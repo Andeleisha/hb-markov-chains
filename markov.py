@@ -54,12 +54,13 @@ def make_chains(text_string):
     words = text_string.split()
 
     words.append(None)
+    words.append(None)
     
     key = tuple([])
     
     for i in range(len(words) - n):
-        key = key + tuple(words[i:i+n])
-        possible_word = words[i+n]
+        key = tuple(words[i:i+n])
+        possible_word = words[i + n]
 
         if key not in chains:
             chains[key] = []
